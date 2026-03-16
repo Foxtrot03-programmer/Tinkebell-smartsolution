@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tinkebell SmartSolution – Government Assistance Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">🔔</div>
+    <div class="logo-text">
+      <span>Tinkebell</span>
+      <span>SmartSolution</span>
+    </div>
+  </a>
+  <div class="nav-right">
+    <ul>
+      <li><a href="#services" data-t="nav_services">Services</a></li>
+      <li><a href="#how"      data-t="nav_how">How It Works</a></li>
+      <li><a href="#why"      data-t="nav_why">Why Us</a></li>
+      <li><a href="#contact"  data-t="nav_contact">Contact</a></li>
+    </ul>
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn"        onclick="setLang('sw')">SW</button>
+    </div>
+    <a href="#contact" class="nav-cta" data-t="nav_cta">Get Started</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="badge">
+      <span class="badge-dot"></span>
+      <span data-t="hero_badge">Trusted Government Assistance</span>
+    </div>
+    <h1 data-t="hero_h1">Fast &amp; Reliable <em>Government Document</em> Services</h1>
+    <p  data-t="hero_p">We help individuals and businesses obtain birth certificates, TIN numbers, and other vital government documents — quickly, correctly, and without the hassle.</p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-primary">📄 <span data-t="hero_btn1">View Services</span></a>
+      <a href="#contact"  class="btn-secondary">📞 <span data-t="hero_btn2">Contact Us</span></a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="doc-card">
+      <div class="doc-card-header">
+        <div class="doc-icon">📜</div>
+        <div>
+          <strong data-t="card_title">Birth Certificate</strong><br>
+          <small>Tanzania — Official Document</small>
+        </div>
+      </div>
+      <div class="doc-field">
+        <span class="doc-field-label" data-t="card_lbl1">Service</span>
+        <span class="doc-field-value" data-t="card_val1">Birth Certificate</span>
+      </div>
+      <div class="doc-field">
+        <span class="doc-field-label" data-t="card_lbl2">Type</span>
+        <span class="doc-field-value" data-t="card_val2">Child / Adult</span>
+      </div>
+      <div class="doc-field">
+        <span class="doc-field-label" data-t="card_lbl3">Processing</span>
+        <span class="doc-field-value" data-t="card_val3">Express Available</span>
+      </div>
+      <div class="doc-field">
+        <span class="doc-field-label" data-t="card_lbl4">Status</span>
+        <span class="doc-status"      data-t="card_val4">Approved</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section id="services">
+  <div class="services-header">
+    <div class="section-label" data-t="s_label">What We Offer</div>
+    <h2 class="section-title"  data-t="s_title">Our <em>Core Services</em></h2>
+    <p  class="section-sub"    data-t="s_sub">From vital records to business registration, we handle the paperwork so you can focus on what matters.</p>
+  </div>
+  <div class="services-grid">
+
+    <div class="service-card">
+      <span class="service-emoji">👶</span>
+      <h3 data-t="sv1_h">Birth Certificate — Children</h3>
+      <p  data-t="sv1_p">Secure an official birth certificate for newborns and minors. We guide you through every requirement, from hospital records to civil registry submission.</p>
+      <div class="service-tags">
+        <span class="tag" data-t="sv1_t1">Newborn</span>
+        <span class="tag" data-t="sv1_t2">Late Registration</span>
+        <span class="tag" data-t="sv1_t3">Certified Copy</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <span class="service-emoji">🧑</span>
+      <h3 data-t="sv2_h">Birth Certificate — Adults</h3>
+      <p  data-t="sv2_p">Have you never registered your birth or need a new certified copy? We handle adult birth certificate applications and corrections efficiently.</p>
+      <div class="service-tags">
+        <span class="tag" data-t="sv2_t1">Unregistered Adults</span>
+        <span class="tag" data-t="sv2_t2">Corrections</span>
+        <span class="tag" data-t="sv2_t3">Replacement Copy</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <span class="service-emoji">🏢</span>
+      <h3 data-t="sv3_h">TIN Number for Businesses</h3>
+      <p  data-t="sv3_p">Register your business and obtain a Tax Identification Number (TIN) with ease. We ensure all forms are filed correctly and promptly.</p>
+      <div class="service-tags">
+        <span class="tag" data-t="sv3_t1">Sole Proprietor</span>
+        <span class="tag" data-t="sv3_t2">Company</span>
+        <span class="tag" data-t="sv3_t3">Partnership</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <span class="service-emoji">📑</span>
+      <h3 data-t="sv4_h">Business Registration</h3>
+      <p  data-t="sv4_p">Full assistance with registering your business name, obtaining permits, and fulfilling all regulatory requirements to legally operate.</p>
+      <div class="service-tags">
+        <span class="tag" data-t="sv4_t1">Business Name</span>
+        <span class="tag" data-t="sv4_t2">Permits</span>
+        <span class="tag" data-t="sv4_t3">Compliance</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <span class="service-emoji">🪪</span>
+      <h3 data-t="sv5_h">National ID &amp; Voter Registration</h3>
+      <p  data-t="sv5_p">We assist with National ID applications and voter registration processes, ensuring your documents are submitted correctly and on time.</p>
+      <div class="service-tags">
+        <span class="tag" data-t="sv5_t1">National ID</span>
+        <span class="tag" data-t="sv5_t2">Voter ID</span>
+        <span class="tag" data-t="sv5_t3">Renewals</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <span class="service-emoji">🤝</span>
+      <h3 data-t="sv6_h">Other Government Assistance</h3>
+      <p  data-t="sv6_p">Beyond certificates and TINs, we offer support for a wide range of government transactions — affidavits, clearances, permits, and more.</p>
+      <div class="service-tags">
+        <span class="tag" data-t="sv6_t1">Affidavits</span>
+        <span class="tag" data-t="sv6_t2">Clearances</span>
+        <span class="tag" data-t="sv6_t3">Custom Requests</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ── -->
+<section id="how">
+  <div class="how-wrap">
+    <div>
+      <div class="section-label" data-t="h_label">The Process</div>
+      <h2 class="section-title"  data-t="h_title">How It <em>Works</em></h2>
+      <p  class="section-sub"    data-t="h_sub">Our streamlined process gets your documents processed with minimal stress and maximum speed.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div><h4 data-t="step1_h">Consultation &amp; Assessment</h4><p data-t="step1_p">Tell us what document you need. We identify the exact requirements and documents needed for your case.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div><h4 data-t="step2_h">Document Submission</h4><p data-t="step2_p">Provide us with your supporting documents. We review them for completeness before submission.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div><h4 data-t="step3_h">Processing &amp; Follow-Up</h4><p data-t="step3_p">We handle all government submissions and follow up on your behalf to ensure timely processing.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div><h4 data-t="step4_h">Document Release</h4><p data-t="step4_p">Receive your official certified document. We notify you as soon as it is ready for collection or delivery.</p></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="how-visual">
+        <h4 style="margin-bottom:1.5rem;font-family:'Playfair Display',serif;" data-t="rate_title">Service Success Rate</h4>
+        <div class="progress-item"><div class="progress-label"><span data-t="rate1">Birth Certificates</span><span>98%</span></div><div class="progress-bar"><div class="progress-fill" style="width:98%"></div></div></div>
+        <div class="progress-item"><div class="progress-label"><span data-t="rate2">TIN Registration</span><span>99%</span></div><div class="progress-bar"><div class="progress-fill" style="width:99%"></div></div></div>
+        <div class="progress-item"><div class="progress-label"><span data-t="rate3">Business Registration</span><span>96%</span></div><div class="progress-bar"><div class="progress-fill" style="width:96%"></div></div></div>
+        <div class="progress-item"><div class="progress-label"><span data-t="rate4">Other Government Docs</span><span>95%</span></div><div class="progress-bar"><div class="progress-fill" style="width:95%"></div></div></div>
+        <div class="stat-row">
+          <div class="stat-box"><strong>2,500+</strong><span data-t="stat1">Clients Served</span></div>
+          <div class="stat-box"><strong>5★</strong><span data-t="stat2">Client Rating</span></div>
+          <div class="stat-box"><strong data-t="stat3">Fast</strong><span data-t="stat3b">Turnaround</span></div>
+          <div class="stat-box"><strong>100%</strong><span data-t="stat4">Confidential</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY US ── -->
+<section id="why">
+  <div class="section-label" style="text-align:center" data-t="w_label">Why Choose Us</div>
+  <h2 class="section-title"  style="text-align:center;margin:0 auto .8rem" data-t="w_title">The <em>Tinkebell</em> Advantage</h2>
+  <p  class="section-sub"    style="margin:0 auto;text-align:center"        data-t="w_sub">We combine expertise, integrity, and speed to deliver results you can count on.</p>
+  <div class="why-grid">
+    <div class="why-card"><div class="why-icon">⚡</div><h4 data-t="w1_h">Express Processing</h4><p data-t="w1_p">Urgent requests handled with priority. We work fast so you don't have to wait.</p></div>
+    <div class="why-card"><div class="why-icon">🔒</div><h4 data-t="w2_h">Fully Confidential</h4><p data-t="w2_p">Your personal and business information is handled with strict confidentiality.</p></div>
+    <div class="why-card"><div class="why-icon">✅</div><h4 data-t="w3_h">Experienced Team</h4><p data-t="w3_p">Years of experience navigating government processes across multiple agencies.</p></div>
+    <div class="why-card"><div class="why-icon">💬</div><h4 data-t="w4_h">Dedicated Support</h4><p data-t="w4_p">We keep you informed at every step and are always available to answer questions.</p></div>
+    <div class="why-card"><div class="why-icon">💰</div><h4 data-t="w5_h">Transparent Pricing</h4><p data-t="w5_p">No hidden fees. Know exactly what you're paying for before we begin.</p></div>
+    <div class="why-card"><div class="why-icon">📍</div><h4 data-t="w6_h">Local Expertise</h4><p data-t="w6_p">Deep knowledge of local government offices, procedures, and requirements.</p></div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="contact-info">
+      <div class="section-label" data-t="c_label">Get In Touch</div>
+      <h2 class="section-title"  data-t="c_title">Start Your <em>Application</em> Today</h2>
+      <p  class="section-sub"    data-t="c_sub">Ready to get your documents processed? Reach out and we'll guide you through the next steps.</p>
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="contact-item-icon">📞</div>
+          <div><strong data-t="c_phone_lbl">Phone / WhatsApp</strong><a href="tel:+255762088079">+255 762 088 079</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">📧</div>
+          <div><strong data-t="c_email_lbl">Email</strong><a href="mailto:sikazwefidelis@gmail.com">sikazwefidelis@gmail.com</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">📍</div>
+          <div><strong data-t="c_addr_lbl">Office Address</strong><span data-t="c_addr">Mbeya City, Tanzania</span></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">🕐</div>
+          <div><strong data-t="c_hours_lbl">Business Hours</strong><span data-t="c_hours">Mon–Fri: 8:00 AM – 5:00 PM</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h3 data-t="form_title">Request a Service</h3>
+      <div class="form-group">
+        <label data-t="form_name">Full Name</label>
+        <input type="text" data-ph="form_name_ph" placeholder="Your full name">
+      </div>
+      <div class="form-group">
+        <label data-t="form_phone">Contact Number</label>
+        <input type="tel" placeholder="+255 XXX XXX XXX">
+      </div>
+      <div class="form-group">
+        <label data-t="form_service">Service Needed</label>
+        <select>
+          <option value="" disabled selected data-t="form_select_ph">Select a service</option>
+          <option data-t="opt1">Birth Certificate — Child</option>
+          <option data-t="opt2">Birth Certificate — Adult</option>
+          <option data-t="opt3">TIN Number (Business)</option>
+          <option data-t="opt4">Business Registration</option>
+          <option data-t="opt5">National ID / Voter Registration</option>
+          <option data-t="opt6">Other Government Assistance</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label data-t="form_msg">Message / Details</label>
+        <textarea data-ph="form_msg_ph" placeholder="Briefly describe your situation or any special requirements..."></textarea>
+      </div>
+      <button class="form-submit" data-t="form_submit">📩 Submit Request</button>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <a href="#" class="footer-logo">
+    <div class="logo-icon" style="width:36px;height:36px;font-size:1.1rem;border-radius:8px;">🔔</div>
+    <div class="logo-text" style="margin-left:.7rem;">
+      <span style="font-family:'Playfair Display',serif;font-weight:700;color:var(--gold);font-size:.88rem;">Tinkebell SmartSolution</span>
+    </div>
+  </a>
+  <p class="footer-tagline" data-t="footer_tag">Your trusted partner for government document processing.</p>
+  <div class="footer-links">
+    <a href="#services" data-t="nav_services">Services</a>
+    <a href="#how"      data-t="nav_how">How It Works</a>
+    <a href="#why"      data-t="nav_why">Why Us</a>
+    <a href="#contact"  data-t="nav_contact">Contact</a>
+  </div>
+  <p class="footer-copy">&copy; 2026 <span>Tinkebell SmartSolution</span>. <span data-t="footer_copy">All rights reserved.</span></p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
