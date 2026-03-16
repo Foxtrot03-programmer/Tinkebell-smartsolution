@@ -320,7 +320,7 @@ cards.forEach(card => {
 // ─────────────────────────────────────────────
 // FORM VALIDATION & SUBMISSION
 // ─────────────────────────────────────────────
- 
+
 // Validation messages per language
 const V = {
   en: {
@@ -342,7 +342,7 @@ const V = {
     success_body:     "Asante! Tumeipokea ombi lako na tutawasiliana nawe kwa nambari uliyotoa ndani ya masaa 24.",
   }
 };
- 
+
 // Inject validation styles once
 const validationStyles = document.createElement('style');
 validationStyles.textContent = `
@@ -364,7 +364,7 @@ validationStyles.textContent = `
     animation: fadeUp .25s ease both;
   }
   .error-msg::before { content: '⚠'; font-size: .8rem; }
- 
+
   .success-banner {
     display: none;
     background: rgba(74, 222, 128, 0.1);
@@ -386,7 +386,7 @@ validationStyles.textContent = `
     font-size: .83rem;
     line-height: 1.6;
   }
- 
+
   .form-submit.submitting {
     opacity: .7;
     cursor: not-allowed;
@@ -397,12 +397,12 @@ validationStyles.textContent = `
   }
 `;
 document.head.appendChild(validationStyles);
- 
+
 // Helpers
 function getField(selector) {
   return document.querySelector(selector);
 }
- 
+
 function setError(input, msg) {
   input.classList.remove('field-success');
   input.classList.add('field-error');
@@ -414,27 +414,27 @@ function setError(input, msg) {
   }
   errEl.textContent = msg;
 }
- 
+
 function setValid(input) {
   input.classList.remove('field-error');
   input.classList.add('field-success');
   const errEl = input.parentElement.querySelector('.error-msg');
   if (errEl) errEl.remove();
 }
- 
+
 function clearState(input) {
   input.classList.remove('field-error', 'field-success');
   const errEl = input.parentElement.querySelector('.error-msg');
   if (errEl) errEl.remove();
 }
- 
+
 // Live validation — clear error as user types/changes
 function attachLiveValidation() {
   const nameInput    = getField('.contact-form input[type="text"]');
   const phoneInput   = getField('.contact-form input[type="tel"]');
   const serviceSelect = getField('.contact-form select');
   const msgTextarea  = getField('.contact-form textarea');
- 
+
   [nameInput, phoneInput, msgTextarea].forEach(el => {
     if (el) el.addEventListener('input', () => { if (el.value.trim()) setValid(el); else clearState(el); });
   });
@@ -442,18 +442,18 @@ function attachLiveValidation() {
     serviceSelect.addEventListener('change', () => { if (serviceSelect.value) setValid(serviceSelect); else clearState(serviceSelect); });
   }
 }
- 
+
 // Main validation function
 function validateForm() {
   const lang = currentLang;
   const msgs = V[lang];
   let isValid = true;
- 
+
   const nameInput     = getField('.contact-form input[type="text"]');
   const phoneInput    = getField('.contact-form input[type="tel"]');
   const serviceSelect = getField('.contact-form select');
   const msgTextarea   = getField('.contact-form textarea');
- 
+
   // Name
   if (!nameInput.value.trim()) {
     setError(nameInput, msgs.required_name);
@@ -461,7 +461,7 @@ function validateForm() {
   } else {
     setValid(nameInput);
   }
- 
+
   // Phone
   const phoneDigits = phoneInput.value.replace(/\D/g, '');
   if (!phoneInput.value.trim()) {
@@ -473,7 +473,7 @@ function validateForm() {
   } else {
     setValid(phoneInput);
   }
- 
+
   // Service
   if (!serviceSelect.value) {
     setError(serviceSelect, msgs.required_service);
@@ -481,7 +481,7 @@ function validateForm() {
   } else {
     setValid(serviceSelect);
   }
- 
+
   // Message
   if (!msgTextarea.value.trim()) {
     setError(msgTextarea, msgs.required_msg);
@@ -489,72 +489,72 @@ function validateForm() {
   } else {
     setValid(msgTextarea);
   }
- 
+
   return isValid;
 }
- 
+
 // Show success banner
 function showSuccess() {
   const form = document.querySelector('.contact-form');
   let banner = form.querySelector('.success-banner');
- 
+
   if (!banner) {
     banner = document.createElement('div');
     banner.className = 'success-banner';
     form.insertBefore(banner, form.querySelector('.form-group'));
   }
- 
+
   banner.innerHTML = `
     <h4 class="success-title">${V[currentLang].success_title}</h4>
     <p class="success-body">${V[currentLang].success_body}</p>
   `;
   banner.classList.add('visible');
- 
+
   // Scroll to banner
   banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
- 
+
 // Reset form after success
 function resetForm() {
   const nameInput     = getField('.contact-form input[type="text"]');
   const phoneInput    = getField('.contact-form input[type="tel"]');
   const serviceSelect = getField('.contact-form select');
   const msgTextarea   = getField('.contact-form textarea');
- 
+
   [nameInput, phoneInput, msgTextarea].forEach(el => { el.value = ''; clearState(el); });
   serviceSelect.selectedIndex = 0;
   clearState(serviceSelect);
 }
- 
+
 // Attach submit handler
 const submitBtn = document.querySelector('.form-submit');
 if (submitBtn) {
   attachLiveValidation();
- 
+
   submitBtn.addEventListener('click', () => {
     // Hide any existing success banner first
     const existingBanner = document.querySelector('.success-banner');
     if (existingBanner) existingBanner.classList.remove('visible');
- 
+
     if (!validateForm()) {
       // Scroll to first error
       const firstError = document.querySelector('.field-error');
       if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
- 
+
     // Simulate submission
     submitBtn.classList.add('submitting');
     submitBtn.textContent = '⏳ Submitting...';
- 
+
     setTimeout(() => {
       submitBtn.classList.remove('submitting');
       submitBtn.classList.add('submitted');
       submitBtn.textContent = '✅ Submitted!';
- 
+
       showSuccess();
       resetForm();
- 
+
       // Reset button after 4 seconds
       setTimeout(() => {
         submitBtn.classList.remove('submitted');
@@ -564,4 +564,3 @@ if (submitBtn) {
     }, 1200);
   });
 }
- 
