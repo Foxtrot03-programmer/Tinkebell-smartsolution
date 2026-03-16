@@ -318,11 +318,250 @@ cards.forEach(card => {
 });
 
 // ─────────────────────────────────────────────
-// FORM SUBMIT
+// FORM VALIDATION & SUBMISSION
 // ─────────────────────────────────────────────
+ 
+// Validation messages per language
+const V = {
+  en: {
+    required_name:    "Please enter your full name.",
+    required_phone:   "Please enter your contact number.",
+    invalid_phone:    "Please enter a valid phone number (at least 7 digits).",
+    required_service: "Please select the service you need.",
+    required_msg:     "Please provide a brief description of your request.",
+    success_title:    "Request Submitted Successfully! 🎉",
+    success_body:     "Thank you! We have received your request and will contact you at the number provided within 24 hours.",
+  },
+  sw: {
+    required_name:    "Tafadhali weka jina lako kamili.",
+    required_phone:   "Tafadhali weka nambari yako ya mawasiliano.",
+    invalid_phone:    "Tafadhali weka nambari sahihi ya simu (angalau tarakimu 7).",
+    required_service: "Tafadhali chagua huduma unayohitaji.",
+    required_msg:     "Tafadhali eleza kwa ufupi ombi lako.",
+    success_title:    "Ombi Limewasilishwa! 🎉",
+    success_body:     "Asante! Tumeipokea ombi lako na tutawasiliana nawe kwa nambari uliyotoa ndani ya masaa 24.",
+  }
+};
+ 
+// Inject validation styles once
+const validationStyles = document.createElement('style');
+validationStyles.textContent = `
+  .field-error {
+    border-color: #f87171 !important;
+    background: rgba(248, 113, 113, 0.07) !important;
+  }
+  .field-success {
+    border-color: #4ade80 !important;
+    background: rgba(74, 222, 128, 0.05) !important;
+  }
+  .error-msg {
+    color: #f87171;
+    font-size: .78rem;
+    margin-top: .35rem;
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    animation: fadeUp .25s ease both;
+  }
+  .error-msg::before { content: '⚠'; font-size: .8rem; }
+ 
+  .success-banner {
+    display: none;
+    background: rgba(74, 222, 128, 0.1);
+    border: 1px solid rgba(74, 222, 128, 0.35);
+    border-radius: 12px;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 1.4rem;
+    animation: fadeUp .4s ease both;
+  }
+  .success-banner.visible { display: block; }
+  .success-banner h4 {
+    color: #4ade80;
+    font-size: .95rem;
+    font-weight: 700;
+    margin-bottom: .35rem;
+  }
+  .success-banner p {
+    color: #a7f3d0;
+    font-size: .83rem;
+    line-height: 1.6;
+  }
+ 
+  .form-submit.submitting {
+    opacity: .7;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+  .form-submit.submitted {
+    background: linear-gradient(135deg, #22c55e, #16a34a) !important;
+  }
+`;
+document.head.appendChild(validationStyles);
+ 
+// Helpers
+function getField(selector) {
+  return document.querySelector(selector);
+}
+ 
+function setError(input, msg) {
+  input.classList.remove('field-success');
+  input.classList.add('field-error');
+  let errEl = input.parentElement.querySelector('.error-msg');
+  if (!errEl) {
+    errEl = document.createElement('div');
+    errEl.className = 'error-msg';
+    input.parentElement.appendChild(errEl);
+  }
+  errEl.textContent = msg;
+}
+ 
+function setValid(input) {
+  input.classList.remove('field-error');
+  input.classList.add('field-success');
+  const errEl = input.parentElement.querySelector('.error-msg');
+  if (errEl) errEl.remove();
+}
+ 
+function clearState(input) {
+  input.classList.remove('field-error', 'field-success');
+  const errEl = input.parentElement.querySelector('.error-msg');
+  if (errEl) errEl.remove();
+}
+ 
+// Live validation — clear error as user types/changes
+function attachLiveValidation() {
+  const nameInput    = getField('.contact-form input[type="text"]');
+  const phoneInput   = getField('.contact-form input[type="tel"]');
+  const serviceSelect = getField('.contact-form select');
+  const msgTextarea  = getField('.contact-form textarea');
+ 
+  [nameInput, phoneInput, msgTextarea].forEach(el => {
+    if (el) el.addEventListener('input', () => { if (el.value.trim()) setValid(el); else clearState(el); });
+  });
+  if (serviceSelect) {
+    serviceSelect.addEventListener('change', () => { if (serviceSelect.value) setValid(serviceSelect); else clearState(serviceSelect); });
+  }
+}
+ 
+// Main validation function
+function validateForm() {
+  const lang = currentLang;
+  const msgs = V[lang];
+  let isValid = true;
+ 
+  const nameInput     = getField('.contact-form input[type="text"]');
+  const phoneInput    = getField('.contact-form input[type="tel"]');
+  const serviceSelect = getField('.contact-form select');
+  const msgTextarea   = getField('.contact-form textarea');
+ 
+  // Name
+  if (!nameInput.value.trim()) {
+    setError(nameInput, msgs.required_name);
+    isValid = false;
+  } else {
+    setValid(nameInput);
+  }
+ 
+  // Phone
+  const phoneDigits = phoneInput.value.replace(/\D/g, '');
+  if (!phoneInput.value.trim()) {
+    setError(phoneInput, msgs.required_phone);
+    isValid = false;
+  } else if (phoneDigits.length < 7) {
+    setError(phoneInput, msgs.invalid_phone);
+    isValid = false;
+  } else {
+    setValid(phoneInput);
+  }
+ 
+  // Service
+  if (!serviceSelect.value) {
+    setError(serviceSelect, msgs.required_service);
+    isValid = false;
+  } else {
+    setValid(serviceSelect);
+  }
+ 
+  // Message
+  if (!msgTextarea.value.trim()) {
+    setError(msgTextarea, msgs.required_msg);
+    isValid = false;
+  } else {
+    setValid(msgTextarea);
+  }
+ 
+  return isValid;
+}
+ 
+// Show success banner
+function showSuccess() {
+  const form = document.querySelector('.contact-form');
+  let banner = form.querySelector('.success-banner');
+ 
+  if (!banner) {
+    banner = document.createElement('div');
+    banner.className = 'success-banner';
+    form.insertBefore(banner, form.querySelector('.form-group'));
+  }
+ 
+  banner.innerHTML = `
+    <h4 class="success-title">${V[currentLang].success_title}</h4>
+    <p class="success-body">${V[currentLang].success_body}</p>
+  `;
+  banner.classList.add('visible');
+ 
+  // Scroll to banner
+  banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+ 
+// Reset form after success
+function resetForm() {
+  const nameInput     = getField('.contact-form input[type="text"]');
+  const phoneInput    = getField('.contact-form input[type="tel"]');
+  const serviceSelect = getField('.contact-form select');
+  const msgTextarea   = getField('.contact-form textarea');
+ 
+  [nameInput, phoneInput, msgTextarea].forEach(el => { el.value = ''; clearState(el); });
+  serviceSelect.selectedIndex = 0;
+  clearState(serviceSelect);
+}
+ 
+// Attach submit handler
 const submitBtn = document.querySelector('.form-submit');
 if (submitBtn) {
+  attachLiveValidation();
+ 
   submitBtn.addEventListener('click', () => {
-    alert(T[currentLang].alert_msg);
+    // Hide any existing success banner first
+    const existingBanner = document.querySelector('.success-banner');
+    if (existingBanner) existingBanner.classList.remove('visible');
+ 
+    if (!validateForm()) {
+      // Scroll to first error
+      const firstError = document.querySelector('.field-error');
+      if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+ 
+    // Simulate submission
+    submitBtn.classList.add('submitting');
+    submitBtn.textContent = '⏳ Submitting...';
+ 
+    setTimeout(() => {
+      submitBtn.classList.remove('submitting');
+      submitBtn.classList.add('submitted');
+      submitBtn.textContent = '✅ Submitted!';
+ 
+      showSuccess();
+      resetForm();
+ 
+      // Reset button after 4 seconds
+      setTimeout(() => {
+        submitBtn.classList.remove('submitted');
+        submitBtn.setAttribute('data-t', 'form_submit');
+        submitBtn.innerHTML = T[currentLang].form_submit;
+      }, 4000);
+    }, 1200);
   });
 }
+ 
