@@ -46,8 +46,8 @@ const T = {
     sv5_t1: "National ID", sv5_t2: "Voter ID", sv5_t3: "Renewals",
 
     sv6_h: "Other Government Assistance",
-    sv6_p: "Beyond certificates and TINs, we offer support for a wide range of government transactions — affidavits, clearances, permits, and more.",
-    sv6_t1: "Affidavits", sv6_t2: "Clearances", sv6_t3: "Custom Requests",
+    sv6_p: "Beyond certificates and TINs, we offer support for a wide range of government transactions — clearances, permits, and more.",
+    sv6_t1: "Clearances", sv6_t2: "Permits", sv6_t3: "Custom Requests",
 
     h_label: "The Process",
     h_title: 'How It <em>Works</em>',
@@ -161,8 +161,8 @@ const T = {
     sv5_t1: "Kitambulisho cha Taifa", sv5_t2: "Kitambulisho cha Kura", sv5_t3: "Upya",
 
     sv6_h: "Msaada Mwingine wa Serikali",
-    sv6_p: "Zaidi ya vyeti na TIN, tunatoa msaada kwa anuwai ya shughuli za serikali — affidaviti, vibali, ruhusa, na zaidi.",
-    sv6_t1: "Affidaviti", sv6_t2: "Vibali", sv6_t3: "Maombi Maalum",
+    sv6_p: "Zaidi ya vyeti na TIN, tunatoa msaada kwa anuwai ya shughuli za serikali — vibali, ruhusa, na zaidi.",
+    sv6_t1: "Vibali", sv6_t2: "Ruhusa", sv6_t3: "Maombi Maalum",
 
     h_label: "Mchakato",
     h_title: 'Jinsi Inavyofanya <em>Kazi</em>',
